@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_interpod_project_attributes_interpod_project_attributes,interpod_project_attributes.interpod_project_attributes,model_interpod_project_attributes_interpod_project_attributes,,1,0,0,0
