@@ -1,60 +1,245 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="interpod_eco_attributes.list">
-      <field name="name">interpod_eco_attributes list</field>
-      <field name="model">interpod_eco_attributes.interpod_eco_attributes</field>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_mrp_eco__1516710e-3aac-4cb2-8b0a-328c5ed32ae0">
+      <field name="name">Odoo Studio: account.invoice.supplier.tree customization</field>
+      <field name="model">mrp.eco</field>
+      <field name="inherit_id" ref="mrp_plm.mrp_eco_view_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+      <xpath expr="//field[@name='approval_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='tag_ids'][not(ancestor::field)]" position="after">
+        <field name="interpod_linked_documents"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_linked_documents'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">url</attribute>
+      </xpath>
+      <xpath expr="/form[1]/sheet[1]/notebook[1]/page[4]" position="after">
+        <page name="studio_page_s1pvs" string="New Page"/>
+      </xpath>
+      <xpath expr="//page[@name='studio_page_s1pvs'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="string">Checklist</attribute>
+      </xpath>
+      <xpath expr="//page[@name='studio_page_s1pvs'][not(ancestor::field)]" position="inside">
+        <group>
+          <field name="interpod_customer_approval"/>
+        </group>
+      </xpath>
+      <xpath expr="//field[@name='interpod_customer_approval'][not(ancestor::field)]" position="after">
+        <field name="interpod_production_approval"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_production_approval'][not(ancestor::field)]" position="after">
+        <field name="interpod_project_manager_approval"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_project_manager_approval'][not(ancestor::field)]" position="after">
+        <field name="interpod_quarantine_parts"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_customer_approval'][not(ancestor::field)]" position="before">
+        <field name="interpod_testing_and_validation"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_quarantine_parts'][not(ancestor::field)]" position="after">
+        <field name="interpod_supplier_update"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_supplier_update'][not(ancestor::field)]" position="after">
+        <field name="interpod_upload_redline_markup"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_upload_redline_markup'][not(ancestor::field)]" position="after">
+        <field name="interpod_update_routing"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_routing'][not(ancestor::field)]" position="after">
+        <field name="interpod_update_qc_docs"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_qc_docs'][not(ancestor::field)]" position="after">
+        <field name="interpod_update_machine_files"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_machine_files'][not(ancestor::field)]" position="after">
+        <field name="interpod_update_model"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_model'][not(ancestor::field)]" position="after">
+        <field name="interpod_update_bom"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_testing_and_validation'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_customer_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_customer_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_production_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_project_manager_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_project_manager_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_production_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_quarantine_parts'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_quarantine_parts'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_supplier_update'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_supplier_update'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_upload_redline_markup'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_upload_redline_markup'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_routing'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_routing'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_qc_docs'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_qc_docs'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_machine_files'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_machine_files'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_model'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_model'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_bom'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_bom'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">radio</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_linked_documents'][not(ancestor::field)]" position="after">
+        <field name="interpod_stage_id_tracking"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_stage_id_tracking'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="invisible">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_stage_id_tracking'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups">stock.group_warning_stock</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_stage_id_tracking'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_customer_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_production_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_project_manager_approval'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_quarantine_parts'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_supplier_update'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_upload_redline_markup'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_routing'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_qc_docs'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_machine_files'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_model'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_update_bom'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      </field>
+    </record>
+
+<!--
+   <record model="ir.ui.view" id="studio_customization.odoo_studio_mrp_work_0b1b1d49-3949-41a0-aa8b-520cbdce5509">
+      <field name="name">Odoo Studio: mrp.workorder.view.gantt customization</field>
+      <field name="model">mrp.workorder</field>
+      <field name="inherit_id" ref="mrp.mrp_workorder_view_gantt"/>
+      <field name="type">gantt</field>
+      <field name="arch" type="xml">
+      <xpath expr="//gantt[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="duration_unit">day</attribute>
+      </xpath>
+      <xpath expr="//gantt[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="duration_unit">hour</attribute>
+      </xpath>
+      <xpath expr="//gantt[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="duration_unit">month</attribute>
+      </xpath>
+      <xpath expr="//gantt[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="duration_unit">minute</attribute>
+      </xpath>
       </field>
     </record>
     -->
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_eco_attributes.action_window">
-      <field name="name">interpod_eco_attributes window</field>
-      <field name="res_model">interpod_eco_attributes.interpod_eco_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_eco_attributes.action_server">
-      <field name="name">interpod_eco_attributes server</field>
-      <field name="model_id" ref="model_interpod_eco_attributes_interpod_eco_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_eco_attributes" id="interpod_eco_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_eco_attributes.menu_1" parent="interpod_eco_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_eco_attributes.menu_2" parent="interpod_eco_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_eco_attributes.menu_1_list" parent="interpod_eco_attributes.menu_1"
-              action="interpod_eco_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_eco_attributes" parent="interpod_eco_attributes.menu_2"
-              action="interpod_eco_attributes.action_server"/>
-    -->
   </data>
 </odoo>

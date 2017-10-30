@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+    <!--
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_ir_model_d27385bf-9235-463a-83bd-98a06f83b6ac">
+      <field name="name">Odoo Studio: ir.model form customization</field>
+      <field name="model">ir.model</field>
+      <field name="inherit_id" ref="base.view_model_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='mail_thread'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups"/>
+            <attribute name="readonly">False</attribute>
+          </xpath>
+          <xpath expr="//field[@name='mail_thread'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups"/>
+            <attribute name="readonly">True</attribute>
+          </xpath>
+      </field>
+    </record>
+    -->
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_ir_ui_vi_e62bbf2a-4505-4271-8a71-0fda9048be08">
+      <field name="name">Odoo Studio: account.invoice.supplier.form customization</field>
+      <field name="model">ir.ui.view</field>
+      <field name="inherit_id" ref="base.view_view_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='xml_id'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups"/>
+            <attribute name="readonly">False</attribute>
+          </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="studio_customization.default_tree_view_fo_b0ff000d-7b34-4954-a5c1-5e4f0d4c1b0d">
+      <field name="name">Default tree view for res.groups</field>
+      <field name="model">res.groups</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <tree string="Access Groups"><field name="full_name" modifiers="{&quot;readonly&quot;: true}"/></tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_default__555c0916-3a1b-4dd1-a000-0617b3145311">
+      <field name="name">studio_customization.default_tree_view_fo_b0ff000d-7b34-4954-a5c1-5e4f0d4c1b0d</field>
+      <field name="model">res.groups</field>
+      <field name="inherit_id" ref="studio_customization.default_tree_view_fo_b0ff000d-7b34-4954-a5c1-5e4f0d4c1b0d"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='full_name'][not(ancestor::field)]" position="after">
+        <field name="id"/>
+        <field name="trans_implied_ids"/>
+      </xpath>
+      <xpath expr="//field[@name='trans_implied_ids'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='id'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='full_name'][not(ancestor::field)]" position="before">
+        <field name="id"/>
+        <field name="rule_groups"/>
+      </xpath>
+      <xpath expr="//field[@name='rule_groups'][not(ancestor::field)]" position="replace"/>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_res_grou_c9bb2289-f396-407c-9824-6afdc086391b">
+      <field name="name">Odoo Studio: res.groups.form customization</field>
+      <field name="model">res.groups</field>
+      <field name="inherit_id" ref="base.view_groups_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='share'][not(ancestor::field)]" position="after">
+        <field name="full_name"/>
+      </xpath>
+      <xpath expr="/form[1]/sheet[1]/group[1]" position="after">
+        <field name="display_name"/>
+      </xpath>
+      <xpath expr="//field[@name='display_name'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='full_name'][not(ancestor::field)]" position="replace"/>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,60 +1,20 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="interpod_project_attributes.list">
-      <field name="name">interpod_project_attributes list</field>
-      <field name="model">interpod_project_attributes.interpod_project_attributes</field>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_project__cb719314-979a-4572-9865-fccd9c62d051">
+      <field name="name">Odoo Studio: project.project.form customization</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.edit_project"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+      <xpath expr="/form[1]/sheet[1]/div[2]" position="after">
+        <field name="interpod_project_site"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_project_site'][not(ancestor::field)]" position="attributes">
+        <attribute name="string">Project Site</attribute>
+        <attribute name="groups"/>
+        <attribute name="widget">url</attribute>
+      </xpath>
       </field>
     </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_project_attributes.action_window">
-      <field name="name">interpod_project_attributes window</field>
-      <field name="res_model">interpod_project_attributes.interpod_project_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_project_attributes.action_server">
-      <field name="name">interpod_project_attributes server</field>
-      <field name="model_id" ref="model_interpod_project_attributes_interpod_project_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_project_attributes" id="interpod_project_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_project_attributes.menu_1" parent="interpod_project_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_project_attributes.menu_2" parent="interpod_project_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_project_attributes.menu_1_list" parent="interpod_project_attributes.menu_1"
-              action="interpod_project_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_project_attributes" parent="interpod_project_attributes.menu_2"
-              action="interpod_project_attributes.action_server"/>
-    -->
   </data>
 </odoo>

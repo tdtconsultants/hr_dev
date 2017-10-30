@@ -1,0 +1,131 @@
+<odoo>
+  <data>
+
+    <!--
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_in_96745314-b340-4e2a-97e0-f5138e2b6a12">
+      <field name="name">Odoo Studio: stock.inventory.form customization</field>
+      <field name="model">stock.inventory</field>
+      <field name="inherit_id" ref="stock.view_inventory_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='accounting_date']" position="after">
+        <field name="create_uid"/>
+      </xpath>
+      <xpath expr="//field[@name='create_uid'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_va_be7a0d32-9ac0-4359-97f8-810ea1494452">
+      <field name="name">Odoo Studio: Stock Value At Date customization</field>
+      <field name="model">stock.history</field>
+      <field name="inherit_id" ref="stock_account.view_stock_history_report_tree"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='quantity'][not(ancestor::field)]" position="after">
+        <field name="price_unit_on_quant"/>
+      </xpath>
+      </field>
+    </record>
+
+
+-->
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_lo_196d0b1e-e25d-4d5b-9050-02c0597bb1a1">
+      <field name="name">Odoo Studio: stock.location.tree customization</field>
+      <field name="model">stock.location</field>
+      <field name="inherit_id" ref="stock.view_location_tree2"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='display_name'][not(ancestor::field)]" position="before">
+        <field name="id"/>
+      </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_wa_d7b1d762-7d75-4765-8df1-678de06eed8a">
+      <field name="name">Odoo Studio: stock.warehouse customization</field>
+      <field name="model">stock.warehouse</field>
+      <field name="inherit_id" ref="stock.view_warehouse"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='resupply_wh_ids'][not(ancestor::field)]" position="after">
+        <field name="lot_stock_id"/>
+      </xpath>
+      <xpath expr="//field[@name='lot_stock_id'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='wh_output_stock_loc_id'][not(ancestor::field)]" position="after">
+        <field name="lot_stock_id"/>
+      </xpath>
+      </field>
+    </record>
+
+    <!--
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_wa_a8ab69c0-8a38-4be8-8119-02f638d72d4e">
+      <field name="name">Odoo Studio: stock.warehouse.tree customization</field>
+      <field name="model">stock.warehouse</field>
+      <field name="inherit_id" ref="stock.view_warehouse"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <xpath expr="//tree[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="editable"/>
+      </xpath>
+      </field>
+    </record>
+    -->
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_stock_wa_d2d3feb5-9d6e-4d0f-99df-3c86235b9ee1">
+      <field name="name">Odoo Studio: stock.warehouse.orderpoint.form customization</field>
+      <field name="model">stock.warehouse.orderpoint</field>
+      <field name="inherit_id" ref="stock.view_warehouse_orderpoint_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='product_min_qty'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="help">When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to bring the forecasted quantity to the Max Quantity.  The minimum qty is generally the daily consumption x (safety stock days + lead time days)</attribute>
+      </xpath>
+      <xpath expr="//field[@name='product_max_qty'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="help">When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity. The max qty is generally the daily consumption x reorder days [note – leave this field blank if max qty is less than qty multiple] </attribute>
+      </xpath>
+      <xpath expr="//field[@name='qty_multiple'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="help">The procurement quantity will be rounded up to this multiple.  If it is 0, the exact quantity will be used. Use this only if there is a box or pack size.</attribute>
+      </xpath>
+      <xpath expr="//field[@name='product_max_qty'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="help">When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity. The max qty is generally the Minimum Quantity + (daily consumption x reorder days) </attribute>
+      </xpath>
+      </field>
+    </record>
+
+<!--
+    <report
+        id = "interpod_stock_move_product_labels"
+        name = "interpod_stock_move_product_labels"
+        model = "stock.move"
+        string = "Receipt's products labels"
+        report_type="qweb-pdf"
+        paperformat = '__export__.report_paperformat_4'
+        report_name = "interpod_stock_move_product_labels_template"
+    />
+-->
+<!--
+    <template id = "interpod_stock_move_product_labels_template">
+    <t t-name="product_labels_report">
+        <div class="page">
+            <t t-set="move_lines" t-value="docs.move_lines"/>
+            <t t-foreach="move_lines" t-as="ml">
+                    <t  t-call="product.report_productlabel">
+                        <t t-set="docs" t-value="ml.product_id"/>   
+                    </t>
+            </t>
+        </div>
+    </t>
+    </template>
+-->
+
+  </data>
+</odoo>

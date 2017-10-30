@@ -1,60 +1,92 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="interpod_quality_alerts_attributes.list">
-      <field name="name">interpod_quality_alerts_attributes list</field>
-      <field name="model">interpod_quality_alerts_attributes.interpod_quality_alerts_attributes</field>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_quality__4bc64ebf-acc6-45d2-a8db-ad319e74f7e1">
+      <field name="name">Odoo Studio: quality.alert.view.form customization</field>
+      <field name="model">quality.alert</field>
+      <field name="inherit_id" ref="quality.quality_alert_view_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+      <xpath expr="//field[@name='workcenter_id']" position="after">
+        <field name="interpod_date_ncr_created"/>
+      </xpath>
+      <xpath expr="/form[1]/sheet[1]/notebook[1]" position="after">
+        <field name="interpod_related_iso_clause"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_related_iso_clause'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='interpod_date_ncr_created'][not(ancestor::field)]" position="after">
+        <field name="interpod_related_iso_clause"/>
+      </xpath>
+      <xpath expr="//field[@name='product_tmpl_id'][not(ancestor::field)]" position="before">
+        <field name="interpod_ncr_title"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_ncr_title'][not(ancestor::field)]" position="after">
+        <field name="interpod_quality_alert_product_category"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_date_ncr_created'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='interpod_ncr_title'][not(ancestor::field)]" position="after">
+        <field name="interpod_date_ncr_raised"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_date_ncr_raised'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="string">Date Raised</attribute>
+      </xpath>
+      <xpath expr="//field[@name='team_id'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="string">Category</attribute>
+      </xpath>
+      <xpath expr="//field[@name='user_id'][not(ancestor::field)]" position="after">
+        <field name="message_partner_ids"/>
+      </xpath>
+      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="string">Followers (Team)</attribute>
+      </xpath>
+      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">many2many_tags</attribute>
+      </xpath>
+      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='priority'][not(ancestor::field)]" position="after">
+        <field name="interpod_linked_documents"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_linked_documents'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="widget">url</attribute>
+      </xpath>
+      <xpath expr="//field[@name='interpod_related_iso_clause'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='workcenter_id'][not(ancestor::field)]" position="after">
+        <field name="interpod_related_iso_clause"/>
+      </xpath>
+      <xpath expr="//field[@name='interpod_date_ncr_raised'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="help">Use "add follower" below to add team members</attribute>
+      </xpath>
+      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
       </field>
     </record>
-    -->
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_quality_alerts_attributes.action_window">
-      <field name="name">interpod_quality_alerts_attributes window</field>
-      <field name="res_model">interpod_quality_alerts_attributes.interpod_quality_alerts_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_quality_alerts_attributes.action_server">
-      <field name="name">interpod_quality_alerts_attributes server</field>
-      <field name="model_id" ref="model_interpod_quality_alerts_attributes_interpod_quality_alerts_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_quality__add336f4-93de-432f-855f-7d29e7bddf52">
+      <field name="name">Odoo Studio: quality.alert.view.kanban customization</field>
+      <field name="model">quality.alert</field>
+      <field name="inherit_id" ref="quality.quality_alert_view_kanban"/>
+      <field name="type">kanban</field>
+      <field name="arch" type="xml">
+      <xpath expr="//kanban[not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="quick_create">false</attribute>
+      </xpath>
       </field>
     </record>
-    -->
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_quality_alerts_attributes" id="interpod_quality_alerts_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_quality_alerts_attributes.menu_1" parent="interpod_quality_alerts_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_quality_alerts_attributes.menu_2" parent="interpod_quality_alerts_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_quality_alerts_attributes.menu_1_list" parent="interpod_quality_alerts_attributes.menu_1"
-              action="interpod_quality_alerts_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_quality_alerts_attributes" parent="interpod_quality_alerts_attributes.menu_2"
-              action="interpod_quality_alerts_attributes.action_server"/>
-    -->
   </data>
 </odoo>

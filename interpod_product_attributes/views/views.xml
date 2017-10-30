@@ -1,60 +1,77 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
     <!--
-    <record model="ir.ui.view" id="interpod_product_attributes.list">
-      <field name="name">interpod_product_attributes list</field>
-      <field name="model">interpod_product_attributes.interpod_product_attributes</field>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_product__b06cb6cb-ccae-4da2-acad-8d4d1e4f7df5">
+      <field name="name">Odoo Studio: Product.template.product.kanban customization</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_kanban_view"/>
+      <field name="type">kanban</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+      <xpath expr="//field[@name='lst_price'][not(ancestor::field)]" position="after">
+        <field display="full" name="standard_price"/>
+      </xpath>
+      <xpath expr="//field[@name='qty_available'][not(ancestor::field)]" position="after">
+        <field display="full" name="categ_id"/>
+      </xpath>
+      <xpath expr="//field[@name='categ_id'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='lst_price'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//div/*[1][not(ancestor::field)]" position="before">
+        <field name="interpod_product_projects"/>
+      </xpath>
+      <xpath expr="//field[@name='standard_price'][not(ancestor::field)]" position="after">
+        <field display="full" name="price"/>
+      </xpath>
+      <xpath expr="//field[@name='price'][not(ancestor::field)]" position="replace"/>
       </field>
     </record>
     -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_product_attributes.action_window">
-      <field name="name">interpod_product_attributes window</field>
-      <field name="res_model">interpod_product_attributes.interpod_product_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_product_attributes.action_server">
-      <field name="name">interpod_product_attributes server</field>
-      <field name="model_id" ref="model_interpod_product_attributes_interpod_product_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_product__1ff4abe7-f9a8-424a-a778-778dd5b397c2">
+      <field name="name">Odoo Studio: Product.template.product.form customization</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='categ_id'][not(ancestor::field)]" position="after">
+        <field name="interpod_product_projects" widget="many2many_tags" string="Project(s)"/>
+      </xpath>
+      <xpath expr="/form[1]/sheet[1]/div[2]" position="after">
+        <field name="display_name"/>
+      </xpath>
+      <xpath expr="//field[@name='display_name'][not(ancestor::field)]" position="replace"/>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="required">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='default_code'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='default_code'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">False</attribute>
+      </xpath>
+      <xpath expr="//field[@name='barcode'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="readonly">True</attribute>
+      </xpath>
       </field>
     </record>
-    -->
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_product_attributes" id="interpod_product_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_product_attributes.menu_1" parent="interpod_product_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_product_attributes.menu_2" parent="interpod_product_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_product_attributes.menu_1_list" parent="interpod_product_attributes.menu_1"
-              action="interpod_product_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_product_attributes" parent="interpod_product_attributes.menu_2"
-              action="interpod_product_attributes.action_server"/>
-    -->
   </data>
 </odoo>

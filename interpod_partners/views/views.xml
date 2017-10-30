@@ -1,0 +1,35 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_res_part_e87be75f-cfd5-4046-8468-6f4344bc31e2">
+      <field name="name">Odoo Studio: res.partner.form customization</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='vat'][not(ancestor::field)]" position="attributes">
+        <attribute name="groups"/>
+        <attribute name="string">ABN</attribute>
+      </xpath>
+      </field>
+    </record>
+
+    <!--
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_res_user_ce234944-6f63-4cb3-aaf9-e46c03a31ad9">
+      <field name="name">Odoo Studio: res.users.tree customization</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_tree"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='name'][not(ancestor::field)]" position="after">
+        <field name="odoo_com_uid"/>
+      </xpath>
+      <xpath expr="//field[@name='odoo_com_uid'][not(ancestor::field)]" position="after">
+        <field name="password"/>
+      </xpath>
+      <xpath expr="//field[@name='password'][not(ancestor::field)]" position="replace"/>
+      </field>
+    </record>
+    -->
+  </data>
+</odoo>
+

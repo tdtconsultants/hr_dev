@@ -1,60 +1,15 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="interpod_maintenance_equipments_attributes.list">
-      <field name="name">interpod_maintenance_equipments_attributes list</field>
-      <field name="model">interpod_maintenance_equipments_attributes.interpod_maintenance_equipments_attributes</field>
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_equipmen_0b8c828c-ec27-40e9-878b-c949ce0f5775">
+      <field name="name">Odoo Studio: equipment.form customization</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+      <xpath expr="//field[@name='employee_id']" position="after">
+        <field name="interpod_asset_number"/>
+      </xpath>
       </field>
     </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_maintenance_equipments_attributes.action_window">
-      <field name="name">interpod_maintenance_equipments_attributes window</field>
-      <field name="res_model">interpod_maintenance_equipments_attributes.interpod_maintenance_equipments_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_maintenance_equipments_attributes.action_server">
-      <field name="name">interpod_maintenance_equipments_attributes server</field>
-      <field name="model_id" ref="model_interpod_maintenance_equipments_attributes_interpod_maintenance_equipments_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_maintenance_equipments_attributes" id="interpod_maintenance_equipments_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_maintenance_equipments_attributes.menu_1" parent="interpod_maintenance_equipments_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_maintenance_equipments_attributes.menu_2" parent="interpod_maintenance_equipments_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_maintenance_equipments_attributes.menu_1_list" parent="interpod_maintenance_equipments_attributes.menu_1"
-              action="interpod_maintenance_equipments_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_maintenance_equipments_attributes" parent="interpod_maintenance_equipments_attributes.menu_2"
-              action="interpod_maintenance_equipments_attributes.action_server"/>
-    -->
   </data>
 </odoo>

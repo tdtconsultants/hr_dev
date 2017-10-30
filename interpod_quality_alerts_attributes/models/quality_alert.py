@@ -10,4 +10,5 @@ class QualityAlert(models.Model):
     interpod_ncr_title = fields.Char('Title', required = False, translate = False)
     interpod_linked_documents = fields.Char('Linked Documents', required = False, translate = False)
     interpod_date_ncr_raised = fields.Date('Date Raised', required = False , translate = False)
+    interpod_date_ncr_created = fields.Date('Date Created', required = False , translate = False)
     

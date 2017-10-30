@@ -1,60 +1,44 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="interpod_invoice_attributes.list">
-      <field name="name">interpod_invoice_attributes list</field>
-      <field name="model">interpod_invoice_attributes.interpod_invoice_attributes</field>
+
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_account__b8619e51-88c4-4e9b-8d27-590c697ef0a7">
+      <field name="name">Odoo Studio: account.invoice.supplier.form customization</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+          <xpath expr="//field[@name='date_due'][not(ancestor::field)]" position="after">
+            <field name="interpod_exported"/>
+          </xpath>
+          <xpath expr="//field[@name='interpod_exported'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups">account.group_account_user</attribute>
+          </xpath>
+          <xpath expr="//field[@name='interpod_exported'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups">account.group_account_user,account.group_account_manager</attribute>
+          </xpath>
+          <xpath expr="//field[@name='date_due'][not(ancestor::field)]" position="after">
+            <field name="interpod_planned_payment_date"/>
+          </xpath>
       </field>
     </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="interpod_invoice_attributes.action_window">
-      <field name="name">interpod_invoice_attributes window</field>
-      <field name="res_model">interpod_invoice_attributes.interpod_invoice_attributes</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="interpod_invoice_attributes.action_server">
-      <field name="name">interpod_invoice_attributes server</field>
-      <field name="model_id" ref="model_interpod_invoice_attributes_interpod_invoice_attributes"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
+  
+    <record model="ir.ui.view" id="studio_customization.odoo_studio_account__ef447b07-08c1-4eb4-bca3-84ccb1cbd59a">
+      <field name="name">Odoo Studio: account.invoice.supplier.tree customization</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='residual_signed'][not(ancestor::field)]" position="after">
+            <field name="interpod_exported"/>
+          </xpath>
+          <xpath expr="//field[@name='interpod_exported'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups">account.group_account_user</attribute>
+          </xpath>
+          <xpath expr="//field[@name='interpod_exported'][not(ancestor::field)]" position="attributes">
+            <attribute name="groups">account.group_account_user,account.group_account_manager</attribute>
+          </xpath>
       </field>
     </record>
-    -->
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="interpod_invoice_attributes" id="interpod_invoice_attributes.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="interpod_invoice_attributes.menu_1" parent="interpod_invoice_attributes.menu_root"/>
-    <menuitem name="Menu 2" id="interpod_invoice_attributes.menu_2" parent="interpod_invoice_attributes.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="interpod_invoice_attributes.menu_1_list" parent="interpod_invoice_attributes.menu_1"
-              action="interpod_invoice_attributes.action_window"/>
-    <menuitem name="Server to list" id="interpod_invoice_attributes" parent="interpod_invoice_attributes.menu_2"
-              action="interpod_invoice_attributes.action_server"/>
-    -->
   </data>
 </odoo>

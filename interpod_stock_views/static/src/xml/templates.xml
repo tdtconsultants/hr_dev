@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <template id = "interpod_stock_move_product_labels_template">
+    <t t-name="product_labels_report">
+        <div class="page">
+            <t t-set="move_lines" t-value="docs.move_lines"/>
+            <t t-foreach="move_lines" t-as="ml">
+                    <t  t-call="product.report_productlabel">
+                        <t t-set="docs" t-value="ml.product_id"/>
+                    </t>
+            </t>
+        </div>
+    </t>
+    </template>
+
