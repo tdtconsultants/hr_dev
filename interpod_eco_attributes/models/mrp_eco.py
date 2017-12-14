@@ -18,3 +18,12 @@ class MrpEco(models.Model):
     interpod_linked_documents = fields.Char('Linked Documents' , required = False,  translate=False)
     interpod_stage_id_tracking = fields.Many2one('mrp.eco.stage' , string = "Stage",required = False,  translate=False)
     interpod_customer_approval = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Customer Approval", required = False, translate = False)
+
+class MrpEcoApproval(models.Model):
+    _inherit = "mrp.eco.approval"
+
+    approval_template_id = fields.Many2one(
+        'mrp.eco.approval.template', 'Template',
+        ondelete='cascade', required=False)
+
+
