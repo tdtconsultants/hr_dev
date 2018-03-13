@@ -10,6 +10,7 @@ class MrpWorkorder(models.Model):
             if self.production_id.product_id.autocomplete_manufacturing_order and not self.production_id.workorder_ids.filtered(lambda x: x.state != 'done'):
                 try:
                     self.production_id.button_mark_done()
+                except:
+                    pass
 
         return ret
-
