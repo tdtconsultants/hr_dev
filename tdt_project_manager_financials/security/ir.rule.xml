@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="account_move_line_project_manager" model="ir.rule">
+			<field name="name">Project manager Journal Items</field>
+			<field name="model_id" ref="account.model_account_move_line"/>
+			<field name="domain_force">[('account_id.project_manager_access', '=', True)]</field>
+			<field name="groups" eval="[(4, ref('project.group_project_manager'))]"/>
+		</record>
+
+		<record id="account_move_project_manager" model="ir.rule">
+			<field name="name">Project manager Journal Entries</field>
+			<field name="model_id" ref="account.model_account_move"/>
+			<field name="domain_force">[('line_ids.account_id.project_manager_access', '=', True)]</field>
+			<field name="groups" eval="[(4, ref('project.group_project_manager'))]"/>
+		</record>
+
+	</data>
+</odoo>

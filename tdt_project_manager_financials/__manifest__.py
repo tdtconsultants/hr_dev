@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "tdt_mrp_production_autocomplete",
+    'name': "tdt_project_manager_financials",
 
     'summary': """
-        Make a manufacturing order set to done automatically when all its work orders are completed.
+        Allow Project Manager to have access to specified accounts.
         """,
 
     'description': """
@@ -14,15 +14,16 @@
 
     # Categories can be used to filter modules in modules listing
     # for the full list
-    'category': 'Manufacturing',
+    'category': 'Accounting',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','mrp'],
+    'depends': ['base','account'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/product.xml',
+        'security/ir.model.access.csv',
+        'security/ir.rule.xml',
+        'views/account.xml',
     ],
 }
