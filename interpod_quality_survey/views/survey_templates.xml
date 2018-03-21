@@ -1,0 +1,43 @@
+<odoo>
+    <record model="ir.ui.view" id="interpod_qc_survey_init_modifications">
+        <field name="name">interpod_qc_survey_modifications</field>
+        <field name="inherit_id" ref="survey.survey_init"/>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <xpath expr="//a" position="replace">
+                <a class="btn btn-primary btn-lg" t-att-href="'/interpod_qc/survey/fill/%s/%s/%s' % (slug(survey), token, str(mo_id))">
+                    Start Survey
+                </a>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="interpod_qc_survey_page_modifications">
+        <field name="name">interpod_qc_survey_page_modifications</field>
+        <field name="inherit_id" ref="survey.page"/>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="t-att-action">'/interpod_qc/survey/fill/%s/%s/%s' % (slug(survey), token, str(mo_id))</attribute>
+                <attribute name="t-att-data-submit">'/interpod_qc/survey/submit/%s/%s' % (slug(survey), str(mo_id))</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="interpod_qc_survey_answers_tree">
+        <field name="name">interpod_qc_survey_answers_tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree>
+                    <field name="question_id"/>
+                    <field name="value_suggested"/>
+                    <field name="page_id"/>
+                    <field name="answer_type"/>
+                    <field name="skipped"/>
+                    <field name="date_create"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_interpod_quality_survey_interpod_quality_survey,interpod_quality_survey.interpod_quality_survey,model_interpod_quality_survey_interpod_quality_survey,,1,0,0,0
