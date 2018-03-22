@@ -18,6 +18,21 @@ class ManufacturingOrder(models.Model):
 
     analytic_account_id = fields.Many2one('account.analytic.account', help="Generic consumables will generate analytic lines in this account")
 
+class InvoiceLine(models.Model):
+
+    _inherit = "account.invoice.line"
+
+    @api.model
+    def create(self, vals):
+        if vals['account_analytic_id']:
+            prod = self.env['product.product'].browse(vals['product_id'])
+            if prod.product_tmpl_id.generic_consumable:
+                raise UserError("You cannot set an analytic account on a generic consumable product, you must set it later on the Manufacturing order")
+        line = super(InvoiceLine, self).create(vals)
+        return line
+
+
+
 class WorkOrder(models.Model):
 
     _inherit = "mrp.workorder"
