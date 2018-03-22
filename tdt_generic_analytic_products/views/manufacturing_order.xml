@@ -1,0 +1,13 @@
+<odoo>
+    <record model="ir.ui.view" id="interpod_mo_analytic_account">
+        <field name="name">interpod_mo_analytic_account</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='origin']" position="after">
+            <field name="analytic_account_id"/>
+        </xpath>
+        </field>
+    </record>
+</odoo>

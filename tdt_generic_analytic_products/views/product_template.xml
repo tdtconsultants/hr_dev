@@ -1,0 +1,13 @@
+<odoo>
+    <record model="ir.ui.view" id="interpod_generic_consumable">
+        <field name="name">interpod_generic_consumable</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field name="generic_consumable"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
