@@ -17,7 +17,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['mrp','survey'],
+    'depends': ['quality_mrp','survey'],
 
     # always loaded
     'data': [
@@ -25,6 +25,7 @@
         'views/manufacturing_order.xml',
         'views/product_template.xml',
         'views/survey_templates.xml',
+        'data/quality_point_test_type.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

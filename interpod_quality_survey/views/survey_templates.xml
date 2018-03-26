@@ -5,7 +5,7 @@
         <field name="type">qweb</field>
         <field name="arch" type="xml">
             <xpath expr="//a" position="replace">
-                <a class="btn btn-primary btn-lg" t-att-href="'/interpod_qc/survey/fill/%s/%s/%s' % (slug(survey), token, str(mo_id))">
+                <a class="btn btn-primary btn-lg" t-att-href="'/interpod_qc/survey/fill/%s/%s/%s/%s' % (slug(survey), token, str(mo_id), str(wo_id))">
                     Start Survey
                 </a>
             </xpath>
@@ -17,8 +17,8 @@
         <field name="type">qweb</field>
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
-                <attribute name="t-att-action">'/interpod_qc/survey/fill/%s/%s/%s' % (slug(survey), token, str(mo_id))</attribute>
-                <attribute name="t-att-data-submit">'/interpod_qc/survey/submit/%s/%s' % (slug(survey), str(mo_id))</attribute>
+                <attribute name="t-att-action">'/interpod_qc/survey/fill/%s/%s/%s/%s' % (slug(survey), token, str(mo_id), str(wo_id))</attribute>
+                <attribute name="t-att-data-submit">'/interpod_qc/survey/submit/%s/%s/%s' % (slug(survey), str(mo_id), str(wo_id))</attribute>
             </xpath>
         </field>
     </record>
@@ -37,6 +37,16 @@
                     <field name="skipped"/>
                     <field name="date_create"/>
                 </tree>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="interpod_workorder_survey">
+        <field name="name">interpod_workorder_survey</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="quality_mrp.mrp_workorder_view_form_tablet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='do_measure']" position="before">
+                <button name="show_qc_survey" type="object" class="btn-success" attrs="{'invisible': ['|', ('quality_state', '!=', 'none'), ('test_type', '!=', 'survey')]}" string="QC Survey"/>
             </xpath>
         </field>
     </record>

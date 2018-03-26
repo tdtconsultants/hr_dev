@@ -1,0 +1,6 @@
+<odoo>
+    <record model="quality.point.test_type" id="interpod_quality_point_test_type_survey">
+        <field name="name">Survey</field>
+        <field name="technical_name">survey</field>
+    </record>
+</odoo>

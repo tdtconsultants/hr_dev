@@ -45,16 +45,16 @@ class WebsiteSurvey(http.Controller):
 
 
     # Survey start
-    @http.route(['/interpod_qc/survey/start/<model("survey.survey"):survey>/<string:mo_id>',
-                 '/interpod_qc/survey/start/<model("survey.survey"):survey>/<string:token>/<string:mo_id>'],
+    @http.route(['/interpod_qc/survey/start/<model("survey.survey"):survey>/<string:mo_id>/<string:wo_id>',
+                 '/interpod_qc/survey/start/<model("survey.survey"):survey>/<string:token>/<string:mo_id>/<string:wo_id>'],
                 type='http', auth='public', website=True)
-    def start_survey(self, survey, mo_id = None, token=None, **post):
+    def start_survey(self, survey, mo_id = None, token=None, wo_id = None, **post):
         UserInput = request.env['survey.user_input']
         # Test mode
         if token and token == "phantom":
             _logger.info("[survey] Phantom mode")
             user_input = UserInput.create({'survey_id': survey.id, 'test_entry': True})
-            data = {'survey': survey, 'page': None, 'token': user_input.token, 'mo_id':mo_id}
+            data = {'survey': survey, 'page': None, 'token': user_input.token, 'mo_id':mo_id, 'wo_id':wo_id }
             return request.render('survey.survey_init', data)
         # END Test mode
 
@@ -81,16 +81,16 @@ class WebsiteSurvey(http.Controller):
 
         # Select the right page
         if user_input.state == 'new':  # Intro page
-            data = {'survey': survey, 'page': None, 'token': user_input.token, 'mo_id':mo_id}
+            data = {'survey': survey, 'page': None, 'token': user_input.token, 'mo_id':mo_id, 'wo_id':wo_id }
             return request.render('survey.survey_init', data)
         else:
             return request.redirect('/survey/fill/%s/%s' % (survey.id, user_input.token))
 
     # Survey displaying
-    @http.route(['/interpod_qc/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:mo_id>',
-                 '/interpod_qc/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:mo_id>/<string:prev>'],
+    @http.route(['/interpod_qc/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:mo_id>/<string:wo_id>',
+                 '/interpod_qc/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:mo_id>/<string:wo_id>/<string:prev>'],
                 type='http', auth='public', website=True)
-    def fill_survey(self, survey, token, mo_id=None, prev=None, **post):
+    def fill_survey(self, survey, token, mo_id=None, wo_id = None, prev=None, **post):
         '''Display and validates a survey'''
         Survey = request.env['survey.survey']
         UserInput = request.env['survey.user_input']
@@ -113,15 +113,16 @@ class WebsiteSurvey(http.Controller):
         # Select the right page
         if user_input.state == 'new':  # First page
             page, page_nr, last = Survey.next_page(user_input, 0, go_back=False)
-            data = {'survey': survey, 'page': page, 'page_nr': page_nr, 'token': user_input.token, 'mo_id': mo_id }
+            data = {'survey': survey, 'page': page, 'page_nr': page_nr, 'token': user_input.token, 'mo_id': mo_id, 'wo_id': wo_id }
             if last:
-                data.update({'last': True, 'mo_id': mo_id})
+                data.update({'last': True})
             return request.render('survey.survey', data)
         elif user_input.state == 'done':  # Display success message
             return request.render('survey.sfinished', {'survey': survey,
                                                                'token': token,
                                                                'user_input': user_input,
-                                                               'mo_id': mo_id })
+                                                               'mo_id': mo_id,
+                                                               'wo_id': wo_id })
         elif user_input.state == 'skip':
             flag = (True if prev and prev == 'prev' else False)
             page, page_nr, last = Survey.next_page(user_input, user_input.last_displayed_page_id.id, go_back=flag)
@@ -130,16 +131,16 @@ class WebsiteSurvey(http.Controller):
             if not page:
                 page, page_nr, last = Survey.next_page(user_input, user_input.last_displayed_page_id.id, go_back=True)
 
-            data = {'survey': survey, 'page': page, 'page_nr': page_nr, 'token': user_input.token, 'mo_id':mo_id}
+            data = {'survey': survey, 'page': page, 'page_nr': page_nr, 'token': user_input.token, 'mo_id':mo_id, 'wo_id':wo_id}
             if last:
-                data.update({'last': True, 'mo_id':mo_id})
+                data.update({'last': True})
             return request.render('survey.survey', data)
         else:
             return request.render("website.403")
 
     # AJAX submission of a page
-    @http.route(['/interpod_qc/survey/submit/<model("survey.survey"):survey>/<string:mo_id>'], type='http', methods=['POST'], auth='public', website=True)
-    def submit(self, survey, mo_id=None, **post):
+    @http.route(['/interpod_qc/survey/submit/<model("survey.survey"):survey>/<string:mo_id>/<string:wo_id>'], type='http', methods=['POST'], auth='public', website=True)
+    def submit(self, survey, mo_id=None, wo_id=None, **post):
         _logger.debug('Incoming data: %s', post)
         page_id = int(post['page_id'])
         questions = request.env['survey.question'].search([('page_id', '=', page_id)])
@@ -173,14 +174,24 @@ class WebsiteSurvey(http.Controller):
                 vals.update({'state': 'done'})
                 if mo_id and mo_id != 'None':
                     mo = request.env['mrp.production'].browse(int(mo_id))
-                    survey_answer = request.env['survey.user_input'].browse(user_input.id)
-                    mo.survey_answer_id = survey_answer.id
+                    #survey_answer = request.env['survey.user_input'].browse(user_input.id)
+                    mo.survey_answer_id = user_input.id
+                    wo = request.env['mrp.workorder'].browse(int(wo_id))
+                    wo.submit_survey()
+                    #wo.do_finish()
             else:
                 vals.update({'state': 'skip'})
             user_input.sudo(user=user_id).write(vals)
-            if not mo_id:
-                mo_id = ''
-            ret['redirect'] = '/interpod_qc/survey/fill/%s/%s/%s' % (survey.id, post['token'], str(mo_id))
+            if not mo_id or not wo_id:
+                ret['redirect'] = '/interpod_qc/survey/fill/%s/%s' % (survey.id, post['token'])
+            else:
+                ## /web#id=1503&view_type=form&model=mrp.workorder&active_id=1503&menu_id=320
+                ##ret['redirect'] = '/web#id=%s&view_type=form&model=mrp.workorder&active_id=%s&menu_id=320' % (str(wo.id), str(wo.id))
+                ret['redirect'] = '/interpod_qc/survey/fill/%s/%s/%s/%s' % (survey.id, post['token'], str(mo_id), str(wo_id))
             if go_back:
                 ret['redirect'] += '/prev'
+            if vals['state'] == 'done':
+                #wo.open_tablet_view()
+                #ret['redirect'] = '/web#id=%s&view_type=form&model=mrp.workorder&active_id=%s&menu_id=320' % (str(wo.id), str(wo.id))
+                ret['redirect'] = '/web#view_type=kanban&model=mrp.workorder&action=536&active_id=%s&menu_id=320' % str(wo.workcenter_id.id)
         return json.dumps(ret)

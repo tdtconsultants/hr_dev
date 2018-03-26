@@ -8,9 +8,11 @@
             <xpath expr="//field[@name='product_id']" position="before">
                 <field name="location_id" invisible="1"/>
             </xpath>
+            <!--
             <xpath expr="//header/field[@name='state']" position="before">
                 <button name="show_qc_survey" type="object" class="oe_highlight" string="QC SURVEY" context="{'mo_id':id}" attrs="{'invisible': [('check_to_done', '=', False)] }" />
             </xpath>
+            -->
             <xpath expr="//field[@name='origin']" position="after">
                 <field name="survey_answer_id" string="QC Survey answer" readonly="1" />
             </xpath>
