@@ -1,0 +1,16 @@
+<odoo>
+  <record id="workcenter_customisations" model="ir.ui.view">    
+    <field name="mode">extension</field>
+    <field ref="mrp.mrp_workcenter_view" name="inherit_id"/>
+    <field name="model">mrp.workcenter</field>
+    <field name="name">Workcenter customisations</field>
+    <field name="type">form</field>
+    <field type="xml" name="arch">
+      <data>
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="works_in_parallel"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>
