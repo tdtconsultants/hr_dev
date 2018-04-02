@@ -2,14 +2,10 @@
 
 from odoo import models, fields, api
 
-# class interpod_helpdesk_customisations(models.Model):
-#     _name = 'interpod_helpdesk_customisations.interpod_helpdesk_customisations'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+class HelpdeskTicket(models.Model):
+    _inherit = 'helpdesk.ticket'
+
+    user_id = fields.Many2one('res.users', string='Assigned to', track_visibility='onchange', domain=[])
+
+
