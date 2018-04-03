@@ -1,0 +1,16 @@
+<odoo>
+  <record id="interpod_employee_customisations" model="ir.ui.view">    
+    <field ref="hr.view_employee_form" name="inherit_id"/>
+    <field name="model">hr.employee</field>
+    <field name="name">interpod_employee_customisations</field>
+    <field name="type">form</field>
+    <field type="xml" name="arch">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="personal_phone" groups="hr.group_hr_manager" />
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>
+

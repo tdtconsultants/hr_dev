@@ -3,6 +3,9 @@ from openerp import models, api, fields, _
 class MaintenanceEquipment(models.Model):
     _inherit = "maintenance.equipment"
 
-    #name = fields.Char('Name', index=True, required=True)
     interpod_asset_number = fields.Char("Asset Number", required = False, translate = False)
 
+    def _compute_display_name(self):
+        self.display_name = ('[' + self.interpod_asset_number +'] ' + self.name) if self.interpod_asset_number else self.name
+
+    display_name = fields.Char(compute='_compute_display_name')

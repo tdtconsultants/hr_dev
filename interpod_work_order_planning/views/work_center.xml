@@ -1,5 +1,5 @@
 <odoo>
-  <record id="workcenter_customisations" model="ir.ui.view">    
+  <record id="interpod_workcenter_customisations" model="ir.ui.view">    
     <field name="mode">extension</field>
     <field ref="mrp.mrp_workcenter_view" name="inherit_id"/>
     <field name="model">mrp.workcenter</field>
@@ -10,6 +10,23 @@
         <xpath expr="//field[@name='name']" position="after">
           <field name="works_in_parallel"/>
         </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="interpod_workorders_customisations" model="ir.ui.view">    
+    <field name="mode">extension</field>
+    <field ref="mrp.workcenter_line_kanban" name="inherit_id"/>
+    <field name="model">mrp.workorder</field>
+    <field name="name">Interpod workorders</field>
+    <field name="type">kanban</field>
+    <field type="xml" name="arch">
+      <data>
+          <xpath expr="//field[@name='product_uom_id']" position="after">
+            <field name="interpod_color"/>
+          </xpath>
+          <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]" position="attributes">
+            <attribute name="color">interpod_color</attribute>
+          </xpath>
       </data>
     </field>
   </record>
