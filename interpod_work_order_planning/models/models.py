@@ -60,6 +60,22 @@ class MrpWorkOrder(models.Model):
         return res
 
 class MrpWorkCenter(models.Model):
+    _inherit = 'mrp.workorder'
+
+    @api.one
+    def _compute_interpod_color(self):
+        color_codes = { 'pending': 3, ## yellow
+                        'progress': 8, ## blue
+                        'ready': 10, ## green
+                        'cancel': 9, ## green
+                        'done': 0 ## white (doesn't appear on kanban)
+                      }
+        self.interpod_color = color_codes.get(self.state, 6)
+
+    interpod_color = fields.Integer(compute='_compute_interpod_color')
+
+
+class MrpWorkCenter(models.Model):
     _inherit = 'mrp.workcenter'
 
     works_in_parallel = fields.Boolean(default=False, help="Select this if you want this work center to allow overlapping work orders")
