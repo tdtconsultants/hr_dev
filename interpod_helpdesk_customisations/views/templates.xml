@@ -2,7 +2,18 @@
     <record model="ir.ui.menu" id="helpdesk.menu_helpdesk_root">
         <field name="groups_id" eval="[(5,0,0)]"/>
     </record>
-    <record model="ir.ui.menu" id="helpdesk.helpdesk_menu_team_dashboard">
-        <field name="groups_id" eval="[(5,0,0)]"/>
+
+    <record id="interpod_ticket_customisations" model="ir.ui.view">
+        <field name="name">interpod_ticket_customisations</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="readonly" eval="1"/>
+            </xpath>
+        </field>
     </record>
+
+
+
 </odoo>

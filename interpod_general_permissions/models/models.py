@@ -16,6 +16,6 @@ class SaleOrder(models.Model):
     def action_cancel(self):
         env = self.env
         group_id = self.env.ref('interpod_general_permissions.interpod_managing_group').id
-        if group_id in self.env.user.groups_id.ids or (self.create_uid == self.env.user_id and self.state == 'draft'):
+        if group_id in self.env.user.groups_id.ids or (self.create_uid.id == self.env.user.id and self.state == 'draft'):
             return super(SaleOrder, self).action_cancel()
         raise AccessError("Sorry, you are not allowed to cancel this sale order")

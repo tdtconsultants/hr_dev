@@ -8,4 +8,8 @@ class HelpdeskTicket(models.Model):
 
     user_id = fields.Many2one('res.users', string='Assigned to', track_visibility='onchange', domain=[])
 
-
+    @api.model
+    def create(self, vals):
+        if not vals.get('partner_id'):
+            vals['partner_id'] = self.env.user.partner_id.id
+        return super(HelpdeskTicket, self).create(vals)
