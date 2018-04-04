@@ -2,7 +2,7 @@
     <data>
         <record id="interpod_managing_group" model="res.groups">
             <field name="name">Analytic accounting managment</field>
-            <field name="full_name">Analytic accounting managment</field>
+            <field name="full_name">Analytic accounting management</field>
             <field name="category_id" ref="base.model_ir_module_category"/>
             <field name="is_portal" eval="False"/>
         </record>
