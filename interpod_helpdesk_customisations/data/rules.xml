@@ -3,7 +3,7 @@
         <record id="interpod_helpdesk_rule" model="ir.rule">
             <field name="name">Interpod helpdesk rule</field>
             <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
-            <field name="domain_force">['|', ('create_uid','=', user.id), ('user_id','=',user.id)]</field>
+            <field name="domain_force">['|', '|', '|', '|', ('create_uid','=', user.id), ('user_id','=',user.id), ('partner_id','=', user.partner_id.id), ('true_field', '=', user.is_helpdesk_user), ('message_partner_ids', 'in', [user.partner_id.id])]</field>
             <field name="groups" eval="[(5,0,0)]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>

@@ -8,12 +8,31 @@
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="attributes">
-                <attribute name="readonly" eval="1"/>
+        <field name="priority">16</field>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id" readonly="1" />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="replace"> 
+                <field name="user_id" readonly="1" />
             </xpath>
         </field>
     </record>
 
+    <record id="interpod_ticket_customisations_readonly_0" model="ir.ui.view">
+        <field name="name">interpod_ticket_customisations_readonly_0</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('helpdesk.group_helpdesk_user') ])]"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id" readonly="0" />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="replace"> 
+                <field name="user_id" readonly="0" />
+            </xpath>
+        </field>
+    </record>
 
 
 </odoo>
