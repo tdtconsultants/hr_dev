@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['helpdesk'],
+    'depends': ['helpdesk','interpod_hr_employees_customisations'],
 
     # always loaded
     'data': [
