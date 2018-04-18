@@ -14,6 +14,11 @@ class HelpdeskTicket(models.Model):
     team_id = fields.Many2one('helpdesk.team', string='Helpdesk Team', default=None, index=True, required=True)
     true_field = fields.Boolean(default=True, readonly=True)
 
+    current_behaviour = fields.Text()
+    expected_behaviour = fields.Text()
+    steps_to_reproduce = fields.Text(help="Detailed steps and context to reproduce this error/unwanted behaviour")
+
+
     @api.model
     def create(self, vals):
         if not vals.get('partner_id'):
