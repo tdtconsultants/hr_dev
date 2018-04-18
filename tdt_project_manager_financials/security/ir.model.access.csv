@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_project_manager_account_move,account.move.project.manager,account.model_account_move,project.group_project_manager,1,0,0,0
 access_project_manager_account_move_line,account.move.line.project.manager,account.model_account_move_line,project.group_project_manager,1,0,0,0
 access_project_manager_account_partial_reconcile,account.partial.reconcile.project.manager,account.model_account_partial_reconcile,project.group_project_manager,1,0,0,0
+interpod_access_account_manager_analytic_account,interpod_access_account_manager_analytic_account,analytic.model_account_analytic_account,account.group_account_manager,1,1,1,1

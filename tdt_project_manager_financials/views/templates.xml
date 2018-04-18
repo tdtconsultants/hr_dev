@@ -1,0 +1,110 @@
+<odoo>
+    <record id="interpod_analytic_account_form_customisations" model="ir.ui.view">    
+      <field name="mode">extension</field>
+      <field ref="analytic.view_account_analytic_account_form" name="inherit_id"/>
+      <field name="model">account.analytic.account</field>
+      <field name="name">interpod_analytic_account_form_customisations</field>
+      <field name="type">form</field>
+      <field type="xml" name="arch">
+        <data>
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="project_manager_access"/>
+            </xpath>
+        </data>
+      </field>
+    </record>
+
+
+    <record id="interpod_project_kanban_customisations" model="ir.ui.view">    
+      <field name="mode">extension</field>
+      <field ref="project.view_project_kanban" name="inherit_id"/>
+      <field name="model">project.project</field>
+      <field name="name">interpod_project_kanban_customisations</field>
+      <field name="type">kanban</field>
+      <field type="xml" name="arch">
+          <data>
+              <xpath expr="//a[contains(concat(' ', normalize-space(@class), ' '), ' o_project_kanban_box ')]" position="before">
+                  <a class="o_project_kanban_box" type="open">Settings</a>
+              </xpath>
+          </data>
+      </field>
+    </record>
+
+    <record id="interpod_project_costs" model="ir.actions.act_window">
+        <field name="name">Project Costs</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="src_model">project.project</field>
+        <field name="domain">[('account_id.project_ids','in',[active_id]),('amount', '&lt;', 0)]</field>
+    </record>
+    <record id="interpod_project_revenue" model="ir.actions.act_window">
+        <field name="name">Project Revenue</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="src_model">project.project</field>
+        <field name="domain">[('account_id.project_ids','in',[active_id]),('amount', '&gt;=', 0)]</field>
+    </record>
+
+    <record id="interpod_project_cost_revenue" model="ir.ui.view">
+      <field ref="project.edit_project" name="inherit_id"/>
+      <field name="model">project.project</field>
+      <field name="name">interpod_project_cost_revenue</field>
+      <field name="type">form</field>
+      <field name="priority">16</field>
+
+      <field type="xml" name="arch">
+          <data>
+            <xpath expr="//div[@name='button_box']" postion="before">
+                <field name="project_manager_access" invisible="1"/>
+            </xpath>
+            <button name="attachment_tree_view" position="before">
+                    <button class="oe_stat_button interpod_revenues" icon="fa-usd" type="action" name="%(interpod_project_revenue)d" groups="account.group_account_manager,project.group_project_manager" attrs="{'invisible': [('project_manager_access','=',False)]}">
+                      <div class="o_form_field o_stat_info">
+                          <span class="o_stat_value">
+                              <field string="Revenues" name="credit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                          </span>
+                           <span class="o_stat_text">Revenues</span>
+                       </div>
+                    </button>
+                    <button class="oe_stat_button interpod_costs" type="action" name="%(interpod_project_costs)d" icon="fa-usd" groups="account.group_account_manager,project.group_project_manager" attrs="{'invisible': [('project_manager_access','=',False)]}">
+                       <div class="o_form_field o_stat_info">
+                          <span class="o_stat_value">
+                              <field string="Costs" name="debit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                          </span>
+                          <span class="o_stat_text">Costs</span>
+                       </div>
+                    </button>
+            </button>
+          </data>
+      </field>
+    </record>
+
+    <record id="interpod_costs_and_revenues_tree_customisation" model="ir.ui.view">
+      <field ref="hr_timesheet.hr_timesheet_line_tree" name="inherit_id"/>
+      <field name="model">account.analytic.line</field>
+      <field name="name">interpod_project_cost_revenue_tree_customisation</field>
+      <field name="type">tree</field>
+      <field type="xml" name="arch">
+          <data>
+              <xpath expr="//field[@name='unit_amount']" position="after">
+                  <field name="amount" sum="Total amount" widget="float_monetary"/>
+              </xpath>
+              <xpath expr="//tree" position="attributes">
+                <attribute name="editable"></attribute>
+              </xpath>
+          </data>
+      </field>
+    </record>
+
+    <record model="ir.ui.menu" id="account.menu_action_analytic_lines_tree">
+      <field name="groups_id" eval="[(5,0,0),(4,ref('account.group_account_manager'))]"/>
+    </record>
+    <record model="ir.ui.menu" id="account.menu_action_analytic_lines_reporting">
+      <field name="groups_id" eval="[(5,0,0),(4,ref('account.group_account_manager'))]"/>
+    </record>
+    <record model="ir.ui.menu" id="account.menu_analytic_accounting">
+      <field name="groups_id" eval="[(5,0,0),(4,ref('account.group_account_manager'))]"/>
+    </record>
+</odoo>
