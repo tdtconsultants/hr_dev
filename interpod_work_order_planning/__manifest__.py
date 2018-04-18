@@ -18,11 +18,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
+    #'depends': ['base', 'mrp', 'mrp_workorder'],
     'depends': ['base', 'mrp_workorder'],
 
     # always loaded
     'data': [
-        'views/work_center.xml'
+        'views/work_center.xml',
+        'views/mrp_routing.xml',
+        'data/server_action.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

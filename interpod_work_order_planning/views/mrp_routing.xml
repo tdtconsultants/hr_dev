@@ -1,0 +1,41 @@
+<odoo>
+  <record id="interpod_mrp_routing" model="ir.ui.view">    
+    <field name="mode">extension</field>
+    <field ref="mrp.mrp_routing_form_view" name="inherit_id"/>
+    <field name="model">mrp.routing</field>
+    <field name="name">interpod_mrp_routing</field>
+    <field name="type">form</field>
+    <field type="xml" name="arch">
+      <data>
+          <xpath expr="//field[@name='operation_ids']" position="inside">
+            <tree string="Routing Work Centers">
+              <field name="sequence" widget="handle" modifiers="{}"/>
+              <field name="name" modifiers="{&quot;required&quot;: true}"/>
+              <field name="workcenter_id" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+              <field name="time_mode"/>
+              <field name="auto_start"/>
+              <field name="auto_complete"/>
+              <field name="time_cycle" widget="float_time" modifiers="{&quot;readonly&quot;: true}"/>
+              <field name="company_id" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+            </tree>
+          </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="interpod_mrp_routing_operation" model="ir.ui.view">    
+    <field name="mode">extension</field>
+    <field ref="mrp.mrp_routing_workcenter_form_view" name="inherit_id"/>
+    <field name="model">mrp.routing.workcenter</field>
+    <field name="name">interpod_mrp_routing_operation</field>
+    <field name="type">form</field>
+    <field type="xml" name="arch">
+      <data>
+          <xpath expr="//field[@name='time_cycle']" position="after">
+            <field name="auto_start"/>
+            <field name="auto_complete"/>
+          </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>
