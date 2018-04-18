@@ -1,0 +1,19 @@
+<odoo>
+ <record id="interpod_leaves_customisations" model="ir.ui.view">
+        <field name="name">interpod_leaves_customisations</field>
+        <field name="model">hr.holidays</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+        <field name="arch" type="xml">
+			<data>
+				<xpath expr="//field[@name='date_to']" position="attributes">
+				  <attribute name="t-options">{"format": "dd / MM / yyyy"}</attribute>
+				  <attribute name="widget">date</attribute>
+				</xpath>
+				<xpath expr="//field[@name='date_from']" position="attributes">
+				  <attribute name="t-options">{"format": "dd / MM / yyyy"}</attribute>
+				  <attribute name="widget">date</attribute>
+				</xpath>
+			</data>
+        </field>
+    </record>
+</odoo>
