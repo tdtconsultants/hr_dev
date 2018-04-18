@@ -14,19 +14,16 @@
 
     # Categories can be used to filter modules in modules listing
     # for the full list
-    'category': 'tdt',
+    'category': 'Accounting',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account', 'project','interpod_general_permissions','hr_timesheet'],
+    'depends': ['base','account'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        #'security/ir.rule.xml',
-        #'views/account.xml',
-        'views/templates.xml',
-        #'views/templates2.xml',
+        'security/ir.rule.xml',
+        'views/account.xml',
     ],
-    'license': 'OPL-1',
 }
