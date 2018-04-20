@@ -34,7 +34,7 @@
                                     <p t-esc="obj_company['currency_id'][1]" />
                                 </div>
                             </div>
-                            <table class="table table-condensed">
+                            <table class="table table-condensed" style="table-layout: auto;">
                                 <thead>
                                     <tr>
                                         <th class="text-left"
@@ -82,37 +82,37 @@
                                                             <p
                                                                 t-esc="get_product_name(l['product_id'])" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
                                                             <p
-                                                                t-esc="(biggning_inv or 0.0)" />
+                                                                t-esc="'{:,.2f}'.format(biggning_inv) if biggning_inv else 0.00" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
                                                             <p
-                                                                t-esc="(l['product_qty_in'])" />
+                                                                t-esc="'{:,.2f}'.format(l['product_qty_in'])" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
                                                             <p
-                                                                t-esc="(l['product_qty_out'])" />
+                                                                t-esc="'{:,.2f}'.format(l['product_qty_out'])" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
                                                             <p
-                                                                t-esc="(l['product_qty_internal'])" />
+                                                                t-esc="'{:,.2f}'.format(l['product_qty_internal'])" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
                                                             <p
-                                                                t-esc="(l['product_qty_adjustment'])" />
+                                                                t-esc="'{:,.2f}'.format(l['product_qty_adjustment'])" />
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-right" style="width: auto; padding-left: 5px;">
                                                             <p
-                                                                t-esc="ending_inv or 0.0" />
+                                                                t-esc="'{:,.2f}'.format(ending_inv) if ending_inv else 0.0" />
                                                         </td>
-                                                        <td class="text-right" style="color:blue">
+                                                        <td class="text-right" style="color:blue; width: auto; padding-left: 5px;">
                                                             <p
-                                                                t-esc="cost" />
+                                                                t-esc="'{:,.2f}'.format(cost)" />
                                                         </td>
-                                                        <td class="text-right" style="color:blue">
+                                                        <td class="text-right" style="color:blue; width: auto; padding-left: 5px;">
                                                             <p
-                                                                t-esc="subtotal_cost" />
+                                                                t-esc="'{:,.2f}'.format(subtotal_cost)" />
                                                         </td>
                                                     </tr>
                                                 </t>
@@ -138,39 +138,39 @@
                                                     t-esc="get_value_exist(categ[0],obj_company['id'])" />
                                                 <td class="text-right">
                                                     <strong
-                                                        style="color:#827575;font-size: 17px;"
+                                                        style="color:#827575;font-size: 17px; width: auto; padding-left: 2px"
                                                         t-esc="get_categ(categ[0])" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_begin())" />
+                                                        t-esc="'{:,.2f}'.format(total_begin())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_in())" />
+                                                        t-esc="'{:,.2f}'.format(total_in())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_out())" />
+                                                        t-esc="'{:,.2f}'.format(total_out())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_int())" />
+                                                        t-esc="'{:,.2f}'.format(total_int())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_adj())" />
+                                                        t-esc="'{:,.2f}'.format(total_adj())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px">
                                                     <strong
-                                                        t-esc="(total_end())" />
+                                                        t-esc="'{:,.2f}'.format(total_end())" />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                                     <strong />
                                                 </td>
-                                                <td class="text-right" style="color:#9D5389">
+                                                <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                                     <strong
-                                                        t-esc="categ_subtotal_cost()" />
+                                                        t-esc="'{:,.2f}'.format(categ_subtotal_cost())" />
                                                 </td>
                                             </tr>
                                         </t>
@@ -181,36 +181,36 @@
                                                 style="color:#4B524F;font-size: 19px;">Total Inventory
                                             </strong>
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[0])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[0])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[1])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[1])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[2])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[2])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[3])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[3])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 2px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[4])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[4])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 5px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[5])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[5])" />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 5px;">
                                             <strong />
                                         </td>
-                                        <td class="text-right" style="color:#9D5389">
+                                        <td class="text-right" style="color:#9D5389; width: auto; padding-left: 5px;">
                                             <strong
-                                                t-esc="(total_vals(obj_company['id'])[6])" />
+                                                t-esc="'{:,.2f}'.format(total_vals(obj_company['id'])[6])" />
                                         </td>
                                     </tr>
                                 </tbody>
