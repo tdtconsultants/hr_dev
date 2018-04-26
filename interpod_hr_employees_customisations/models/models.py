@@ -14,6 +14,11 @@ class Employee(models.Model):
     personal_phone = fields.Char()
     related_partner_id = fields.Many2one('res.partner', compute='_compute_related_partner', store=True)
 
+    @api.one
+    def _compute_related_partner(self):
+        self.related_partner_id = self.user_id.partner_id
+
+
     @api.model
     def create(self, vals):
         if 'user_id' in vals:
