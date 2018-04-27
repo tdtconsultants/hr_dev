@@ -82,35 +82,35 @@
                                                             <p
                                                                 t-esc="get_product_name(l['product_id'])" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(biggning_inv) if biggning_inv else 0.00" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(l['product_qty_in'])" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(l['product_qty_out'])" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(l['product_qty_internal'])" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 2px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(l['product_qty_adjustment'])" />
                                                         </td>
-                                                        <td class="text-right" style="width: auto; padding-left: 5px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(ending_inv) if ending_inv else 0.0" />
                                                         </td>
-                                                        <td class="text-right" style="color:blue; width: auto; padding-left: 5px;">
+                                                        <td class="text-right">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(cost)" />
                                                         </td>
-                                                        <td class="text-right" style="color:blue; width: auto; padding-left: 5px;">
+                                                        <td class="text-right" style="color:blue;">
                                                             <p
                                                                 t-esc="'{:,.2f}'.format(subtotal_cost)" />
                                                         </td>
