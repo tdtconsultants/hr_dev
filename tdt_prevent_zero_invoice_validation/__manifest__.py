@@ -4,10 +4,12 @@
 
     'summary': """
         This module will prevent invoices with Total amount $0 to be validated.
+        Also will prevent validation of Sale Orders with total amount $0
         """,
 
     'description': """
         This module will prevent invoices with Total amount $0 to be validated.
+        Also will prevent validation of Sale Orders with total amount $0
     """,
 
     'author': "TDT Consultants",
@@ -19,7 +21,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account'],
+    'depends': ['account', 'sale'],
 
     # always loaded
     'data': [
