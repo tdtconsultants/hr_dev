@@ -19,10 +19,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['fleet'],
+    'depends': ['fleet','interpod_hr_employees_customisations'],
 
     # always loaded
     'data': [
+        'views/views.xml',
     ],
     'license': 'OPL-1',
 }
