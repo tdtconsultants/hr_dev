@@ -8,8 +8,6 @@
       <data>
         <xpath expr="//field[@name='address_home_id']" position="after">
           <field name="personal_phone" groups="hr.group_hr_manager" />
-          <field name="nok_name" groups="hr.group_hr_manager" />
-          <field name="nok_contact" groups="hr.group_hr_manager" />
         </xpath>
         <xpath expr="//field[@name='vehicle_distance']" position="attributes">
           <attribute name="invisible">1</attribute>
@@ -23,6 +21,12 @@
         <xpath expr="//field[@name='place_of_birth']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>
+        <page name="personal_information">
+	  <group string="Next of Kin" groups="hr.group_hr_manager">
+            <field name="nok_name" />
+            <field name="nok_contact" />
+	  </group>
+	</page>
       </data>
     </field>
   </record>
