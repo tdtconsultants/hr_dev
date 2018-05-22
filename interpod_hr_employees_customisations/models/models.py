@@ -14,6 +14,9 @@ class Employee(models.Model):
     personal_phone = fields.Char()
     related_partner_id = fields.Many2one('res.partner', compute='_compute_related_partner', store=True)
 
+    nok_name = fields.Char()
+    nok_contact = fields.Char()
+
     @api.one
     def _compute_related_partner(self):
         self.related_partner_id = self.user_id.partner_id
