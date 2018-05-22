@@ -14,8 +14,8 @@ class Employee(models.Model):
     personal_phone = fields.Char()
     related_partner_id = fields.Many2one('res.partner', compute='_compute_related_partner', store=True)
 
-    nok_name = fields.Char()
-    nok_contact = fields.Char()
+    nok_name = fields.Char('Name', help="Next of Kin Name")
+    nok_contact = fields.Char('Contact Number', help="Next of Kin Contact Number")
 
     @api.one
     def _compute_related_partner(self):
@@ -30,7 +30,7 @@ class Employee(models.Model):
                 partner.is_employee = True
         return super(Employee, self).create(vals)
 
- 
+
     @api.multi
     def write(self, vals):
         if 'user_id' in vals:
@@ -59,7 +59,7 @@ class Partner(models.Model):
             return True
         employee = self.env['hr.employee'].search(['|',('related_partner_id','=', self.id),('user_id.partner_id','=',self.id)])
         self.is_employee = True if employee else False
-        
+
     is_employee = fields.Boolean(compute="_compute_is_employee", store=True)
 
     def compute_all_is_employee(self):
