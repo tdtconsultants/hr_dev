@@ -25,7 +25,7 @@ from odoo import models, fields, api
 
 class EmployeeEntryDocuments(models.Model):
     _name = 'employee.checklist'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _description = "Employee Documents"
 
     @api.multi

@@ -20,5 +20,5 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import employee_documents
-import employee_entry_exit_check_list
+from . import employee_documents
+from . import employee_entry_exit_check_list
