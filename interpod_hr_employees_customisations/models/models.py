@@ -53,14 +53,14 @@ class Partner(models.Model):
 
     _inherit = "res.partner"
 
+    is_employee = fields.Boolean(compute="_compute_is_employee", store=True)
+
     @api.one
     def _compute_is_employee(self):
         if self.employee:
             return True
         employee = self.env['hr.employee'].search(['|',('related_partner_id','=', self.id),('user_id.partner_id','=',self.id)])
         self.is_employee = True if employee else False
-
-    is_employee = fields.Boolean(compute="_compute_is_employee", store=True)
 
     def compute_all_is_employee(self):
         partners = self.env['res.partner'].search([])
