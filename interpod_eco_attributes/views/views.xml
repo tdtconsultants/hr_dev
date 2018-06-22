@@ -1,7 +1,7 @@
 <odoo>
   <data>
-    <record model="ir.ui.view" id="studio_customization.odoo_studio_mrp_eco__1516710e-3aac-4cb2-8b0a-328c5ed32ae0">
-      <field name="name">Odoo Studio: account.invoice.supplier.tree customization</field>
+    <record model="ir.ui.view" id="eco_customizations">
+      <field name="name">Interpod mrp.eco.view.form customization</field>
       <field name="model">mrp.eco</field>
       <field name="inherit_id" ref="mrp_plm.mrp_eco_view_form"/>
       <field name="type">form</field>
