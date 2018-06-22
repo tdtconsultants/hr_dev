@@ -1,0 +1,53 @@
+<odoo>
+  <data>
+    <record id="interpod_testing_and_validation" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Testing and Validation</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_customer_approval" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Customer Approval</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_production_approval" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Production Approval</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_project_manager_approval" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Project Manager Approval</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_quarantine_parts" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Quarantine Parts</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_supplier_update" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Supplier Update</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_upload_redline_markup" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Upload Redline Mark-Up</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_update_routing" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Update Routing</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_update_qc_docs" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Update QC Docs</field>
+      <field name="is_mandatory">False</field>
+      <!-- <field name="help">Update QC documentation, including QC inspections, QC Checkpoints, and ITP's.</field> -->
+    </record>
+    <record id="interpod_update_machine_files" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Update Machine Files</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_update_model" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Update Drawings / Model</field>
+      <field name="is_mandatory">False</field>
+    </record>
+    <record id="interpod_update_bom" model="mrp.eco.interpod_checklist.template">
+      <field name="name">Update BoM</field>
+      <field name="is_mandatory">False</field>
+    </record>
+  </data>
+</odoo>

@@ -1,9 +1,50 @@
 from odoo import models, fields, api
 
 
+class MrpEcoChecklistTemplate(models.Model):
+    _name = 'mrp.eco.interpod_checklist.template'
+
+    name = fields.Char('Name', required=True)
+    help = fields.Char('Help', required=False)
+    is_mandatory = fields.Boolean('Mandatory', required=True)
+
+class MrpEcoChecklist(models.Model):
+    _name = 'mrp.eco.interpod_checklist'
+
+    eco_id = fields.Many2one(
+        'mrp.eco',
+        string='ECO',
+        ondelete='cascade',
+    )
+    name = fields.Char('Name', required=True)
+    help = fields.Char('Help', required=False)
+    is_mandatory = fields.Boolean('Mandatory', required=True)
+    is_approved = fields.Boolean(compute='_compute_is_approved')
+    status = fields.Boolean('Status', required=True)
+
+    @api.one
+    @api.depends('status', 'is_mandatory')
+    def _compute_is_approved(self):
+        return not self.is_mandatory or self.status
+
 class MrpEco(models.Model):
     _inherit = "mrp.eco"
 
+    def _fill_checklist(self):
+        return [(0, None, {
+            'name': t.name,
+            'is_mandatory': t.is_mandatory,
+            'help': t.help,
+        }) for t in self.env['mrp.eco.interpod_checklist.template'].search([])]
+
+    interpod_checklist_ids = fields.One2many(
+        'mrp.eco.interpod_checklist',
+        'eco_id',
+        string="Checklist",
+        required=False,
+        translate=False,
+        default=_fill_checklist,
+    )
     interpod_project = fields.Many2one(
         'project.project',
         string="Project",
@@ -21,6 +62,7 @@ class MrpEco(models.Model):
     interpod_stage_id_tracking = fields.Many2one(
         'mrp.eco.stage', string="Stage", required=False, translate=False)
 
+    # XXX Following fields are legacy and will soon be removed
     interpod_upload_redline_markup = fields.Selection(
         [
             ('required', 'Required'),
