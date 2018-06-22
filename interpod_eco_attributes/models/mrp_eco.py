@@ -4,7 +4,6 @@ from odoo import models, fields, api
 class MrpEco(models.Model):
     _inherit = "mrp.eco"
 
-    #name = fields.Char('Name', index=True, required=True)
     interpod_upload_redline_markup = fields.Selection(
         [
             ('required', 'Required'),
