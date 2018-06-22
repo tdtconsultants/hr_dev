@@ -4,6 +4,13 @@ from odoo import models, fields, api
 class MrpEco(models.Model):
     _inherit = "mrp.eco"
 
+    interpod_project = fields.Many2one(
+        'project.project',
+        string="Project",
+        required=False,
+        translate=False,
+    )
+
     interpod_upload_redline_markup = fields.Selection(
         [
             ('required', 'Required'),
