@@ -1,0 +1,11 @@
+<odoo>
+  <data>
+    <record id="product_all_pods" model="product.template">
+      <field name="sale_ok">False</field>
+      <field name="purchase_ok">False</field>
+      <field name="name">All Pod Types</field>
+      <field name="type">product</field>
+      <field name="list_price">0</field>
+    </record>
+  </data>
+</odoo>
