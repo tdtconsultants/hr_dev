@@ -9,7 +9,7 @@ class MrpEco(models.Model):
     interpod_update_model = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Update Drawings / Model", required = False, translate = False)
     interpod_update_machine_files = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')] ,string = "Update Machine Files", help="Update Machine Files", required = False, translate = False)
     interpod_update_bom = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Update BoM", required = False, translate = False)
-    interpod_testing_and_validation = fields.Selection( [('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Testing and Validation",  required = True, translate = False)
+    interpod_testing_and_validation = fields.Selection( [('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Testing and Validation",  required = False, translate = False)
     interpod_supplier_update = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Supplier Update", required = False, translate = False)
     interpod_quarantine_parts = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Quarantine Parts", required = False, translate = False)
     interpod_project_manager_approval = fields.Selection([('required','Required'),('not required','Not Required'),('complete','Complete')], string = "Project Manager Approval", required = False, translate = False)
