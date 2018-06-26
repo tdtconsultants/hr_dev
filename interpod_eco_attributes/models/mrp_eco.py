@@ -10,6 +10,12 @@ class MrpEco(models.Model):
         required=False,
         translate=False,
     )
+
+    is_product_all = fields.Boolean(
+        'Applies to All Pod Types',
+        compute='_is_product_all',
+        inverse='_set_product',
+    )
     interpod_linked_documents = fields.Char(
         'Linked Documents', required=False, translate=False)
     interpod_stage_id_tracking = fields.Many2one(
@@ -120,6 +126,22 @@ class MrpEco(models.Model):
         string="Customer Approval",
         required=False,
         translate=False)
+
+    @api.depends('product_tmpl_id')
+    @api.onchange('product_tmpl_id')
+    def _is_product_all(self):
+        """Set is_product_all from product_tmpl_id"""
+        product_all_id = self.env.ref('interpod_eco_attributes.product_all_pods').id
+        self.is_product_all = self.product_tmpl_id.id == product_all_id
+
+    @api.onchange('is_product_all')
+    def _set_product(self):
+        """Set product_tmpl_id from is_product_all"""
+        product_all_id = self.env.ref('interpod_eco_attributes.product_all_pods').id
+        if self.is_product_all:
+            self.product_tmpl_id = product_all_id
+        elif self.product_tmpl_id.id == product_all_id:
+            self.product_tmpl_id = None
 
 class MrpEcoApproval(models.Model):
     _inherit = "mrp.eco.approval"

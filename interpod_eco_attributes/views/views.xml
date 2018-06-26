@@ -12,6 +12,12 @@
 	<xpath expr="//field[@name='user_id']" position="after">
 	  <field name="interpod_project"/>
 	</xpath>
+	<xpath expr="//field[@name='product_tmpl_id']" position="after">
+	  <field name="is_product_all"/>
+	</xpath>
+	<xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+          <attribute name="attrs">{'invisible': [('is_product_all', '=', True)]}</attribute>
+	</xpath>
       </field>
     </record>
   </data>
