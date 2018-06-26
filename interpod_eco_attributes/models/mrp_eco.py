@@ -10,6 +10,10 @@ class MrpEco(models.Model):
         required=False,
         translate=False,
     )
+    interpod_linked_documents = fields.Char(
+        'Linked Documents', required=False, translate=False)
+    interpod_stage_id_tracking = fields.Many2one(
+        'mrp.eco.stage', string="Stage", required=False, translate=False)
 
     interpod_upload_redline_markup = fields.Selection(
         [
@@ -107,11 +111,6 @@ class MrpEco(models.Model):
         string="Production Approval",
         required=False,
         translate=False)
-
-    interpod_linked_documents = fields.Char(
-        'Linked Documents', required=False, translate=False)
-    interpod_stage_id_tracking = fields.Many2one(
-        'mrp.eco.stage', string="Stage", required=False, translate=False)
     interpod_customer_approval = fields.Selection(
         [
             ('required', 'Required'),
