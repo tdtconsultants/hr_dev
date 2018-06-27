@@ -9,9 +9,18 @@
                     <td><span t-field="inv.date_invoice"/></td>
                     <td><span t-field="inv.number"/></td>
                     <td><span t-field="inv.reference"/></td>
-                    <td class="text-right"><span t-field="inv.amount_total"/></td>
-                    <td class="text-right"><span t-esc="inv.amount_total - inv.residual" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
-                    <td class="text-right"><span t-field="inv.residual"/></td>
+                    <td class="text-right">
+		      <span t-field="inv.amount_total"/>
+		    </td>
+		    <td class="text-right">
+		      <span t-field="inv.credit_applied"/>
+		    </td>
+                    <td class="text-right">
+		      <span t-field="inv.payment"/>
+		    </td>
+                    <td class="text-right">
+		      <span t-field="inv.residual"/>
+		    </td>
                 </tr>
             </xpath>
             <xpath expr="//thead/tr" position="replace">
@@ -20,6 +29,7 @@
                     <th>INVOICE NUMBER</th>
                     <th>VENDOR REFERENCE</th>
                     <th class="text-right">ORIGINAL AMOUNT</th>
+                    <th class="text-right">CREDIT APPLIED</th>
                     <th class="text-right">AMOUNT PAID</th>
                     <th class="text-right">BALANCE</th>
                 </tr>
