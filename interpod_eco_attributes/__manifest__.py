@@ -3,21 +3,19 @@
     'name': "interpod_eco_attributes",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-
-    'description': """
-        Long description of module's purpose
+        ECO views and behavior customizations for Interpod
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'description': """
+    """,
+
+    'author': "TDT Consultants",
+    'website': "http://www.tdtconsultants.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'tdt',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'mrp', 'mrp_plm'],
