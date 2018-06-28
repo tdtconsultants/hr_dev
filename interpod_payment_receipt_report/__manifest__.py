@@ -3,11 +3,10 @@
     'name': "interpod_payment_receipt_report",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Payment Recepit Report
+    """,
 
     'description': """
-        Long description of module's purpose
     """,
 
     'author': "TDT Consultants",
@@ -16,7 +15,7 @@
     # Categories can be used to filter modules in modules listing
     # for the full list
     'category': 'tdt',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['web_enterprise', 'account'],
