@@ -5,28 +5,54 @@
         <field name="type">qweb</field>
         <field name="arch" type="xml">
             <xpath expr="//tbody/tr[@t-foreach='o.invoice_ids']" position="replace">
-                <tr t-foreach="o.invoice_ids" t-as="inv">
+              <t t-foreach="o.invoice_ids" t-as="inv">
+                <tr>
                     <td><span t-field="inv.date_invoice"/></td>
                     <td><span t-field="inv.number"/></td>
+                    <td/>
                     <td><span t-field="inv.reference"/></td>
                     <td class="text-right">
-		      <span t-field="inv.amount_total"/>
-		    </td>
-		    <td class="text-right">
-		      <span t-field="inv.credit_applied"/>
-		    </td>
+                      <span t-field="inv.amount_total"/>
+                    </td>
                     <td class="text-right">
-		      <span t-field="inv.payment"/>
-		    </td>
+                      <span t-field="inv.credit_applied"/>
+                    </td>
                     <td class="text-right">
-		      <span t-field="inv.residual"/>
-		    </td>
+                      <span t-field="inv.payment"/>
+                    </td>
+                    <td class="text-right">
+                      <span t-field="inv.residual"/>
+                    </td>
                 </tr>
+                <tr t-foreach="inv.credit_payment_id" t-as="payment">
+                  <td><span t-field="payment.date"/></td>
+                  <td><span t-field="inv.number"/></td>
+                  <td><span t-field="payment.invoice_id.number"/></td>
+                  <td><span t-field="payment.move_id.ref"/></td>
+                  <td><span t-field="payment.invoice_id.amount_total"/></td>
+                  <td><span t-options="{
+		      'widget': 'monetary',
+		      'display_currency': inv.currency_id,
+		   }" t-esc="
+		  sum(
+		      payment.matched_credit_ids.filtered(
+		          lambda c: c.credit_move_id in inv.move_id.line_ids
+                      ).mapped(
+                          lambda m: m.currency_amount
+                          if m.currency_id == inv.currency_id
+                          else m.company_currency_id
+                              .with_context(date=inv.date)
+                              .compute(m.amount, inv.currency_id)
+                      )
+                  )"/></td>
+                </tr>
+              </t>
             </xpath>
             <xpath expr="//thead/tr" position="replace">
                 <tr>
                     <th>INVOICE DATE</th>
                     <th>INVOICE NUMBER</th>
+                    <th>CREDIT NOTE</th>
                     <th>VENDOR REFERENCE</th>
                     <th class="text-right">ORIGINAL AMOUNT</th>
                     <th class="text-right">CREDIT APPLIED</th>
