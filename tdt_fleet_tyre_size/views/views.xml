@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="fleet_tyre_size" model="ir.ui.view">
+    <field name="name">fleet.tyre_size</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='doors']" position="after">
+	<field name="tyre_size"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
