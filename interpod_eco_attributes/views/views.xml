@@ -19,6 +19,7 @@
           <attribute name="attrs">{
             'invisible': [('is_product_all', '=', True)],
           }</attribute>
+          <attribute name="domain">[("categ_id.id", "=", 28)]</attribute>
         </xpath>
       </field>
     </record>
