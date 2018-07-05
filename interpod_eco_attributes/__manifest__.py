@@ -15,7 +15,7 @@
     # Categories can be used to filter modules in modules listing
     # for the full list
     'category': 'tdt',
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'mrp', 'mrp_plm'],
