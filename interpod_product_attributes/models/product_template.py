@@ -3,6 +3,11 @@ from openerp import models, api, fields, _
 class Product(models.Model):
     _inherit = "product.template"
 
+    sale_ok = fields.Boolean(
+         'Can be Sold',
+         default=False,
+         help="Specify if the product can be selected in a sales order line.",
+    )
     interpod_product_projects = fields.Many2many(
         'project.project',
         string="Project(s)",
