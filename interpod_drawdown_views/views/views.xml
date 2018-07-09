@@ -1,14 +1,42 @@
 <odoo>
-    <!-- explicit list view definition -->
-    <record model="ir.actions.report" id="interpod_drawdown_views.action_report_drawdown">
+    <record model="mail.template" id="drawdown_email_template">
+      <field name="model_id" ref="purchase.model_purchase_order"/>
+      <field name="auto_delete">True</field>
+      <field name="email_from">${(object.create_uid.email and '%s &lt;%s&gt;' % (object.create_uid.name, object.create_uid.email) or '')|safe}</field>
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="name">Draw Down - Send by Email</field>
+      <field name="report_name">DD_${(object.name or '').replace('/', '_')}</field>
+      <field name="subject">${object.company_id.name} Draw Down (Ref ${object.name or 'n/a' })</field>
+      <field name="to_partner">${object.partner_id.id}</field>
+      <field name="report_template" ref="action_report_drawdown"/>
+      <field name="attachment_ids" eval="[(6, 0, [ref('drawdown_terms_pdf')])]"/>
+      <field name="body_html"><![CDATA[
+      <div style="margin:0px 0px 9px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot; Helvetica Verdana Arial sans-serif;">
+	<p>
+	  Dear ${object.partner_id.name},
+	</p>
+	<p>
+	  Please find in attachment <strong>Draw Down</strong>
+	  amounting&nbsp;<strong>${object.amount_total}&nbsp;${object.currency_id.name}</strong>
+	  from ${object.company_id.name}.
+	</p>
+	<p>
+	  <strong>Please confirm receipt and delivery date by reply email.</strong>
+	</p>
+	<p>
+	  Thank you,
+	</p>
+      </div>
+      ]]></field>
+    </record>
+    <record model="ir.actions.report" id="action_report_drawdown">
       <field name="name">Drawdown Report</field>
       <field name="report_type">qweb-pdf</field>
       <field name="model">purchase.order</field>
       <field name="report_name">interpod_drawdown_views.report_drawdown</field>
       <field name="print_report_name">(object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or 'Purchase Order - %s' % (object.name))</field>
     </record>
-    
-    <template id="interpod_drawdown_views.report_drawdown">
+    <template id="report_drawdown">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="interpod_drawdown_views.report_drawdown_document" t-lang="o.partner_id.lang"/>
@@ -16,7 +44,7 @@
             </t>
     </template>
 
-    <template id="interpod_drawdown_views.report_drawdown_document">
+    <template id="report_drawdown_document">
             <t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
                 <div class="page">
