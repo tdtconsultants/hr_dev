@@ -25,8 +25,8 @@
       </field>
     </record>
     -->
-    <record model="ir.ui.view" id="studio_customization.odoo_studio_product__1ff4abe7-f9a8-424a-a778-778dd5b397c2">
-      <field name="name">Odoo Studio: Product.template.product.form customization</field>
+    <record model="ir.ui.view" id="product_customizations">
+      <field name="name">Interpod Product Attributes Customization</field>
       <field name="model">product.template</field>
       <field name="inherit_id" ref="product.product_template_only_form_view"/>
       <field name="type">form</field>
