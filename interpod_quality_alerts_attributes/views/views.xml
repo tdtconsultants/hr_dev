@@ -1,12 +1,13 @@
 <odoo>
   <data>
-    <record model="ir.ui.view" id="studio_customization.odoo_studio_quality__4bc64ebf-acc6-45d2-a8db-ad319e74f7e1">
-      <field name="name">Odoo Studio: quality.alert.view.form customization</field>
+    <record model="ir.ui.view" id="qa_form_customization">
+      <field name="name">QA Form customization</field>
       <field name="model">quality.alert</field>
       <field name="inherit_id" ref="quality.quality_alert_view_form"/>
       <field name="type">form</field>
       <field name="arch" type="xml">
       <xpath expr="//field[@name='workcenter_id']" position="after">
+        <field name="interpod_related_iso_clause"/>
         <field name="interpod_date_ncr_created"/>
       </xpath>
       <xpath expr="/form[1]/sheet[1]/notebook[1]" position="after">
@@ -57,9 +58,6 @@
         <attribute name="widget">url</attribute>
       </xpath>
       <xpath expr="//field[@name='interpod_related_iso_clause'][not(ancestor::field)]" position="replace"/>
-      <xpath expr="//field[@name='workcenter_id'][not(ancestor::field)]" position="after">
-        <field name="interpod_related_iso_clause"/>
-      </xpath>
       <xpath expr="//field[@name='interpod_date_ncr_raised'][not(ancestor::field)]" position="attributes">
         <attribute name="groups"/>
         <attribute name="required">True</attribute>
@@ -75,8 +73,8 @@
       </field>
     </record>
 
-    <record model="ir.ui.view" id="studio_customization.odoo_studio_quality__add336f4-93de-432f-855f-7d29e7bddf52">
-      <field name="name">Odoo Studio: quality.alert.view.kanban customization</field>
+    <record model="ir.ui.view" id="qa_kanban_customization">
+      <field name="name">QA kanban view customization</field>
       <field name="model">quality.alert</field>
       <field name="inherit_id" ref="quality.quality_alert_view_kanban"/>
       <field name="type">kanban</field>
@@ -87,6 +85,5 @@
       </xpath>
       </field>
     </record>
-
   </data>
 </odoo>
