@@ -9,66 +9,35 @@
       <xpath expr="//field[@name='workcenter_id']" position="after">
         <field name="interpod_related_iso_clause"/>
         <field name="interpod_date_ncr_created"/>
+        <field name="interpod_related_iso_clause"/>
       </xpath>
       <xpath expr="/form[1]/sheet[1]/notebook[1]" position="after">
         <field name="interpod_related_iso_clause"/>
       </xpath>
-      <xpath expr="//field[@name='interpod_related_iso_clause'][not(ancestor::field)]" position="replace"/>
-      <xpath expr="//field[@name='interpod_date_ncr_created'][not(ancestor::field)]" position="after">
-        <field name="interpod_related_iso_clause"/>
-      </xpath>
-      <xpath expr="//field[@name='product_tmpl_id'][not(ancestor::field)]" position="before">
+      <xpath expr="//field[@name='product_tmpl_id']" position="after">
         <field name="interpod_ncr_title"/>
-      </xpath>
-      <xpath expr="//field[@name='interpod_ncr_title'][not(ancestor::field)]" position="after">
+        <field name="interpod_date_ncr_raised"/>
         <field name="interpod_quality_alert_product_category"/>
       </xpath>
-      <xpath expr="//field[@name='interpod_date_ncr_created'][not(ancestor::field)]" position="replace"/>
-      <xpath expr="//field[@name='interpod_ncr_title'][not(ancestor::field)]" position="after">
-        <field name="interpod_date_ncr_raised"/>
-      </xpath>
-      <xpath expr="//field[@name='interpod_date_ncr_raised'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
-        <attribute name="string">Date Raised</attribute>
-      </xpath>
-      <xpath expr="//field[@name='team_id'][not(ancestor::field)]" position="attributes">
+      <xpath expr="//field[@name='team_id']" position="attributes">
         <attribute name="groups"/>
         <attribute name="string">Category</attribute>
       </xpath>
-      <xpath expr="//field[@name='user_id'][not(ancestor::field)]" position="after">
+      <xpath expr="//field[@name='user_id']" position="after">
         <field name="message_partner_ids"/>
       </xpath>
-      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
+      <xpath expr="//field[@name='message_partner_ids']" position="attributes">
         <attribute name="string">Followers (Team)</attribute>
-      </xpath>
-      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
         <attribute name="widget">many2many_tags</attribute>
-      </xpath>
-      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
         <attribute name="readonly">False</attribute>
+        <attribute name="help">Use "add follower" below to add team members</attribute>
+        <attribute name="readonly">True</attribute>
       </xpath>
-      <xpath expr="//field[@name='priority'][not(ancestor::field)]" position="after">
+      <xpath expr="//field[@name='priority']" position="after">
         <field name="interpod_linked_documents"/>
       </xpath>
-      <xpath expr="//field[@name='interpod_linked_documents'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
+      <xpath expr="//field[@name='interpod_linked_documents']" position="attributes">
         <attribute name="widget">url</attribute>
-      </xpath>
-      <xpath expr="//field[@name='interpod_related_iso_clause'][not(ancestor::field)]" position="replace"/>
-      <xpath expr="//field[@name='interpod_date_ncr_raised'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
-        <attribute name="required">True</attribute>
-      </xpath>
-      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
-        <attribute name="help">Use "add follower" below to add team members</attribute>
-      </xpath>
-      <xpath expr="//field[@name='message_partner_ids'][not(ancestor::field)]" position="attributes">
-        <attribute name="groups"/>
-        <attribute name="readonly">True</attribute>
       </xpath>
       </field>
     </record>
